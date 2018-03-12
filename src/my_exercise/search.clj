@@ -14,9 +14,11 @@
 ; Parse response from API, display list of elections
 ; Would want to explore displaying this without navigating to /search (a.k.a. SPA), also add error-handling on UI
 (defn parse [response]
-    [:div {:class "results"}
-      [:h1 "Elections"]
-      [:ul
+  [:div {:class "results"}
+    [:h1 "Elections"]
+    [:ul
+      (if (= 0 (count response))
+        [:li "No results"]
         (for [election response]
           (do
             ; Ideally would dynamically show returned fields vs. manually hard-coding them like below
@@ -32,8 +34,9 @@
                 [:a {:href polling-place-url} "Polling place URL"]]]
           )
         )
-      ]
+      )
     ]
+  ]
 )
 
 ; Error handling for blank city or state

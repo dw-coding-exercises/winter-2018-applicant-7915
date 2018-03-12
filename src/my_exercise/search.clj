@@ -51,6 +51,7 @@
 
 ; Get inputted form POST data
 ; Only looking for city and state fields currently, would use other fields to get more data if possible
+; Would also validate other fields
 (defn getdata [request]
     (def params (get request :form-params))
     (def state (str (get params "state")))
